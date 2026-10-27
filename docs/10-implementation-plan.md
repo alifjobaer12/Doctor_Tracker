@@ -28,8 +28,8 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Patients page with search/filter/pagination/edit/delete.
 
 ## Phase 5 — Analytics & Dashboard
-- [ ] Analytics endpoints + zero-fill + caching.
-- [ ] Dashboard stat cards + 4 charts, range toggle, skeletons/empty states.
+- [x] Analytics endpoints + zero-fill + caching.
+- [x] Dashboard stat cards + 4 charts, range toggle, skeletons/empty states.
 
 ## Phase 6 — Polish
 - [ ] Responsive pass (360 / 768 / 1280), dark mode, a11y pass, empty/error states, toasts.
