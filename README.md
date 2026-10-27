@@ -8,6 +8,15 @@
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-Base%20UI-black)](https://ui.shadcn.com/)
 [![TanStack Query](https://img.shields.io/badge/TanStack%20Query-v5-red?logo=react-query)](https://tanstack.com/query)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?logo=vercel)](https://careguide-doctortracker.vercel.app)
+
+---
+
+## 🚀 Live Demo & Access
+
+- **Live Application**: [https://careguide-doctortracker.vercel.app](https://careguide-doctortracker.vercel.app)
+- **Demo Admin Credentials**: `admin@doctortracker.com` / `Admin@12345` *(includes 1-click auto-fill on the login screen)*
+- **Interactive Swagger Documentation**: [https://careguide-doctortracker.vercel.app/api/docs](https://careguide-doctortracker.vercel.app/api/docs)
 
 ---
 
