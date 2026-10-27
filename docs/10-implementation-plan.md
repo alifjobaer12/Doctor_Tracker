@@ -37,7 +37,7 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Tests: auth, doctors list filters/pagination, patients CRUD, analytics shape.
 
 ## Phase 7 — Docs & Deploy
-- [ ] README per file 11 (screenshots desktop + mobile).
-- [ ] Deploy: Atlas, server (Render/Railway), client (Vercel) with `API_URL`. Verify cookies work over HTTPS.
-- [ ] Seed production DB. Verify demo login.
-- [ ] Final run of file 12 checklist.
+- [x] README per file 11 (screenshots desktop + mobile).
+- [x] Deploy: Atlas, server (Render/Railway), client (Vercel) with `API_URL`. Verify cookies work over HTTPS.
+- [x] Seed production DB. Verify demo login.
+- [x] Final run of file 12 checklist.
