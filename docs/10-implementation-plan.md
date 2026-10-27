@@ -32,9 +32,9 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Dashboard stat cards + 4 charts, range toggle, skeletons/empty states.
 
 ## Phase 6 — Polish
-- [ ] Responsive pass (360 / 768 / 1280), dark mode, a11y pass, empty/error states, toasts.
-- [ ] Re-render audit (React Profiler), bundle check, explain() on queries.
-- [ ] Tests: auth, doctors list filters/pagination, patients CRUD, analytics shape.
+- [x] Responsive pass (360 / 768 / 1280), dark mode, a11y pass, empty/error states, toasts.
+- [x] Re-render audit (React Profiler), bundle check, explain() on queries.
+- [x] Tests: auth, doctors list filters/pagination, patients CRUD, analytics shape.
 
 ## Phase 7 — Docs & Deploy
 - [ ] README per file 11 (screenshots desktop + mobile).

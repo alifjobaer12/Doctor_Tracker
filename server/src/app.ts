@@ -12,6 +12,9 @@ import apiRouter from "./routes/index.js";
 
 const app = express();
 
+// Trust reverse proxy (Next.js rewrite proxy, Render/Railway/Vercel)
+app.set("trust proxy", 1);
+
 app.use(helmet());
 app.use(
   cors({

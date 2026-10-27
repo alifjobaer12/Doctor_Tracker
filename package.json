@@ -20,6 +20,7 @@
     "seed": "npm run seed --workspace=server"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "puppeteer-core": "^25.16.0"
   }
 }
