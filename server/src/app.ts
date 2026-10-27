@@ -11,6 +11,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { generalLimiter } from "./middlewares/rateLimit.js";
 import apiRouter from "./routes/index.js";
 import { swaggerDocument } from "./config/swagger.js";
+import { connectDB } from "./config/db.js";
 
 const app = express();
 
@@ -106,6 +107,16 @@ app.get("/api/docs.json", (_req, res) => {
 
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+
+// Ensure MongoDB connection before handling REST API requests (essential for serverless / Vercel)
+app.use("/api/v1", async (_req, _res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Mount REST API v1
 app.use("/api/v1", apiRouter);
