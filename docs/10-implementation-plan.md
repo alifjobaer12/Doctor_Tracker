@@ -14,8 +14,8 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Seed script.
 
 ## Phase 2 — Auth (backend + client)
-- [ ] Login/logout/me endpoints, auth + authorize middleware, rate limit.
-- [ ] Client: axios instance, login page, middleware.ts, portal layout guard, logout.
+- [x] Login/logout/me endpoints, auth + authorize middleware, rate limit.
+- [x] Client: axios instance, login page, middleware.ts, portal layout guard, logout.
 
 ## Phase 3 — Doctors (API + UI)
 - [ ] Doctors CRUD, filters endpoint, list with search/filter/sort/pagination.

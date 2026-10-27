@@ -7,6 +7,8 @@ import morgan from "morgan";
 import { env } from "./config/env.js";
 import { notFound } from "./middlewares/notFound.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import { generalLimiter } from "./middlewares/rateLimit.js";
+import apiRouter from "./routes/index.js";
 
 const app = express();
 
@@ -26,10 +28,16 @@ if (env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
 }
 
+// Global rate limiting
+app.use("/api", generalLimiter);
+
 // Health probe (unauthenticated)
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });
+
+// Mount REST API v1
+app.use("/api/v1", apiRouter);
 
 // 404 handler
 app.use(notFound);
