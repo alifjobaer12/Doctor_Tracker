@@ -260,7 +260,12 @@ erDiagram
 
 ---
 
-## 6. API Endpoint Summary
+## 6. API Endpoint Summary & Interactive Documentation
+
+### Interactive Swagger UI (OpenAPI 3.0)
+The Express backend includes full interactive OpenAPI 3.0 documentation with interactive "Try it out" capabilities, request schemas, and response envelopes:
+- **Direct Backend**: [http://localhost:5000/api/docs](http://localhost:5000/api/docs) (or `/api-docs`)
+- **Through Next.js Proxy**: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 
 All API endpoints reside under `/api/v1` and return the unified response envelope:
 
