@@ -17,7 +17,11 @@ const app = express();
 // Trust reverse proxy (Next.js rewrite proxy, Render/Railway/Vercel)
 app.set("trust proxy", 1);
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 app.use(
   cors({
     origin: env.CLIENT_URL,
@@ -42,8 +46,22 @@ app.get("/health", (_req, res) => {
 });
 
 // Interactive Swagger UI documentation
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerOptions: swaggerUi.SwaggerOptions = {
+  customSiteTitle: "Doctor Tracker API Documentation",
+  customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui.min.css",
+  customJs: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-bundle.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.11.0/swagger-ui-standalone-preset.min.js",
+  ],
+};
+
+app.get("/api/docs.json", (_req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerDocument);
+});
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 // Mount REST API v1
 app.use("/api/v1", apiRouter);
