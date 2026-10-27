@@ -9,9 +9,9 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] `.env.example` files, env validation.
 
 ## Phase 1 — Backend foundation
-- [ ] `app.ts`, `index.ts`, DB connection, error handler, notFound, asyncHandler, ApiError, validate middleware, health route.
-- [ ] Models + indexes (file 04).
-- [ ] Seed script.
+- [x] `app.ts`, `index.ts`, DB connection, error handler, notFound, asyncHandler, ApiError, validate middleware, health route.
+- [x] Models + indexes (file 04).
+- [x] Seed script.
 
 ## Phase 2 — Auth (backend + client)
 - [ ] Login/logout/me endpoints, auth + authorize middleware, rate limit.

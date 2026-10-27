@@ -5,6 +5,8 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import { env } from "./config/env.js";
+import { notFound } from "./middlewares/notFound.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -24,8 +26,15 @@ if (env.NODE_ENV !== "test") {
   app.use(morgan("dev"));
 }
 
+// Health probe (unauthenticated)
 app.get("/health", (_req, res) => {
-  res.status(200).json({ status: "ok" });
+  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });
+
+// 404 handler
+app.use(notFound);
+
+// Central error handler
+app.use(errorHandler);
 
 export default app;
