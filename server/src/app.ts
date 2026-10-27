@@ -22,10 +22,54 @@ app.use(
     contentSecurityPolicy: false,
   })
 );
+// Parse configured origins (supports comma-separated list and automatically strips trailing slashes)
+const configuredOrigins = env.CLIENT_URL
+  ? env.CLIENT_URL.split(",").map((url) => url.trim().replace(/\/$/, ""))
+  : [];
+
+const allowedOriginsSet = new Set([
+  ...configuredOrigins,
+  "http://localhost:3000",
+  "http://localhost:5000",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:5000",
+]);
+
 app.use(
   cors({
-    origin: env.CLIENT_URL,
+    origin: (origin, callback) => {
+      // Allow requests with no Origin header (Next.js server rewrite proxy, curl, uptime probes)
+      if (!origin) return callback(null, true);
+
+      const normalizedOrigin = origin.replace(/\/$/, "");
+
+      // Allow if exactly in allowed list
+      if (allowedOriginsSet.has(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      // Allow Vercel preview deployments if main client is on vercel.app
+      if (
+        configuredOrigins.some((o) => o.includes("vercel.app")) &&
+        normalizedOrigin.endsWith(".vercel.app")
+      ) {
+        return callback(null, true);
+      }
+
+      // Allow any localhost port in development or test
+      if (
+        (env.NODE_ENV === "development" || env.NODE_ENV === "test") &&
+        /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(normalizedOrigin)
+      ) {
+        return callback(null, true);
+      }
+
+      callback(null, false);
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie", "X-Requested-With"],
+    exposedHeaders: ["Set-Cookie"],
   })
 );
 app.use(compression());
