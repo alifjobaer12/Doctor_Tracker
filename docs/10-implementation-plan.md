@@ -22,10 +22,10 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Doctors page (toolbar, table/cards, pagination, add/edit/delete dialogs).
 
 ## Phase 4 — Patients (API + UI)
-- [ ] Patients CRUD, filters endpoint, list query builder, counter maintenance.
-- [ ] Doctor patients endpoints (`/doctors/:id/patients`).
-- [ ] Doctor detail page with patients, add, delete.
-- [ ] Patients page with search/filter/pagination/edit/delete.
+- [x] Patients CRUD, filters endpoint, list query builder, counter maintenance.
+- [x] Doctor patients endpoints (`/doctors/:id/patients`).
+- [x] Doctor detail page with patients, add, delete.
+- [x] Patients page with search/filter/pagination/edit/delete.
 
 ## Phase 5 — Analytics & Dashboard
 - [ ] Analytics endpoints + zero-fill + caching.
