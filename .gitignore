@@ -39,3 +39,14 @@ Thumbs.db
 # Temp
 .turbo/
 .vercel/
+
+# Internal Docs, Workflows & Local Automation
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.agent/
+.gemini/
+.cursor/
+.cursorrules
+docs/*.md
+scripts/capture-screenshots.mjs
