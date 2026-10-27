@@ -98,22 +98,22 @@ export default function DoctorsPage() {
       </div>
 
       {/* Toolbar & Filters */}
-      <div className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm">
+      <div className="glass-panel p-4 shadow-lg space-y-3">
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           <SearchInput
             value={search}
             onChange={(val) => updateUrlParams({ search: val, page: 1 })}
             placeholder="Search by doctor name, email, or phone..."
-            className="w-full md:max-w-md"
+            className="w-full md:max-w-md bg-card/60 dark:bg-card/40 border-border/70"
           />
 
           <div className="flex items-center gap-2 self-end md:self-auto">
-            <div className="flex items-center rounded-md border p-1 bg-muted/40">
+            <div className="flex items-center rounded-lg border border-border/60 p-1 bg-card/40 backdrop-blur-md">
               <Button
                 variant={viewMode === "table" ? "secondary" : "ghost"}
                 size="icon"
                 onClick={() => setViewMode("table")}
-                className="h-7 w-7"
+                className="h-7 w-7 rounded-md"
                 title="Table View"
               >
                 <List className="h-4 w-4" />
@@ -122,7 +122,7 @@ export default function DoctorsPage() {
                 variant={viewMode === "grid" ? "secondary" : "ghost"}
                 size="icon"
                 onClick={() => setViewMode("grid")}
-                className="h-7 w-7"
+                className="h-7 w-7 rounded-md"
                 title="Card Grid View"
               >
                 <LayoutGrid className="h-4 w-4" />

@@ -17,6 +17,7 @@
     "lint:client": "npm run lint --workspace=client",
     "lint": "npm run lint:server && npm run lint:client",
     "test:server": "npm run test --workspace=server",
+    "test": "npm run test:server",
     "seed": "npm run seed --workspace=server"
   },
   "devDependencies": {

@@ -30,13 +30,13 @@ export function PatientsPerDoctorChart({ data = [], isLoading = false }: Patient
   }, [data]);
 
   return (
-    <Card className="col-span-1 shadow-sm">
+    <Card className="col-span-1 glass-card">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2">
+        <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2 text-foreground">
           <Stethoscope className="h-4 w-4 text-primary" />
           Top Physicians by Patient Load
         </CardTitle>
-        <CardDescription className="text-xs">
+        <CardDescription className="text-xs text-muted-foreground">
           Physicians with highest clinical patient counts
         </CardDescription>
       </CardHeader>
@@ -56,12 +56,12 @@ export function PatientsPerDoctorChart({ data = [], isLoading = false }: Patient
                 data={chartData}
                 margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
               >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--border))" opacity={0.5} />
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} className="stroke-border/40" />
                 <XAxis
                   type="number"
                   tickLine={false}
                   axisLine={false}
-                  tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  className="fill-muted-foreground text-[11px]"
                 />
                 <YAxis
                   dataKey="displayName"
@@ -69,19 +69,19 @@ export function PatientsPerDoctorChart({ data = [], isLoading = false }: Patient
                   tickLine={false}
                   axisLine={false}
                   width={90}
-                  tick={{ fontSize: 11, fill: "hsl(var(--foreground))" }}
+                  className="fill-foreground text-[11px] font-medium"
                 />
                 <Tooltip
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const item = payload[0].payload as PatientsPerDoctor;
                       return (
-                        <div className="rounded-lg border bg-popover p-2.5 shadow-md text-xs">
-                          <p className="font-semibold text-popover-foreground">{item.name}</p>
+                        <div className="rounded-xl border border-border/80 bg-popover/95 backdrop-blur-md p-3 shadow-xl text-xs">
+                          <p className="font-semibold text-foreground">{item.name}</p>
                           <p className="text-muted-foreground text-[11px]">{item.specialization}</p>
                           <p className="text-muted-foreground text-[11px]">{item.hospital}</p>
-                          <p className="mt-1 font-medium">
-                            Patients: <strong className="text-primary">{item.patientsCount}</strong>
+                          <p className="mt-1 font-medium text-foreground">
+                            Patients: <strong className="text-primary font-bold">{item.patientsCount}</strong>
                           </p>
                         </div>
                       );
@@ -92,7 +92,7 @@ export function PatientsPerDoctorChart({ data = [], isLoading = false }: Patient
                 <Bar
                   dataKey="patientsCount"
                   fill="#8b5cf6"
-                  radius={[0, 4, 4, 0]}
+                  radius={[0, 6, 6, 0]}
                   barSize={16}
                 />
               </BarChart>

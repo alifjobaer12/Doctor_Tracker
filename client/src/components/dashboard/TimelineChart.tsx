@@ -37,19 +37,19 @@ export function TimelineChart({
   ];
 
   return (
-    <Card className="col-span-1 lg:col-span-2 shadow-sm">
+    <Card className="col-span-1 lg:col-span-2 glass-card">
       <CardHeader className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 gap-3">
         <div>
-          <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2">
+          <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2 text-foreground">
             <Calendar className="h-4 w-4 text-primary" />
             Patient Admission Trends
           </CardTitle>
-          <CardDescription className="text-xs">
+          <CardDescription className="text-xs text-muted-foreground">
             Historical patient intake volume over selected timeframe
           </CardDescription>
         </div>
 
-        <div className="flex items-center rounded-lg border bg-muted/40 p-1 self-start sm:self-auto">
+        <div className="flex items-center rounded-lg border border-border/60 bg-muted/30 p-1 self-start sm:self-auto backdrop-blur-xs">
           {rangeOptions.map((opt) => (
             <Button
               key={opt.value}
@@ -80,34 +80,34 @@ export function TimelineChart({
               >
                 <defs>
                   <linearGradient id="patientTrendGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.35} />
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.45} />
                     <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" opacity={0.5} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-border/40" />
                 <XAxis
                   dataKey="label"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
-                  tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  className="fill-muted-foreground text-[11px]"
                 />
                 <YAxis
                   allowDecimals={false}
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
-                  tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  className="fill-muted-foreground text-[11px]"
                 />
                 <Tooltip
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const item = payload[0].payload as TimelineDataPoint;
                       return (
-                        <div className="rounded-lg border bg-popover p-2.5 shadow-md text-xs">
-                          <p className="font-semibold text-popover-foreground">{item.label}</p>
-                          <p className="text-muted-foreground mt-0.5">
-                            Admissions: <strong className="text-primary">{item.count}</strong>
+                        <div className="rounded-xl border border-border/80 bg-popover/95 backdrop-blur-md p-3 shadow-xl text-xs">
+                          <p className="font-semibold text-foreground">{item.label}</p>
+                          <p className="text-muted-foreground mt-1">
+                            Admissions: <strong className="text-primary font-bold">{item.count}</strong>
                           </p>
                         </div>
                       );
@@ -119,7 +119,7 @@ export function TimelineChart({
                   type="monotone"
                   dataKey="count"
                   stroke="#3b82f6"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   fillOpacity={1}
                   fill="url(#patientTrendGradient)"
                 />

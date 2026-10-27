@@ -24,13 +24,13 @@ interface ConditionsDonutChartProps {
 
 export function ConditionsDonutChart({ data = [], isLoading = false }: ConditionsDonutChartProps) {
   return (
-    <Card className="col-span-1 shadow-sm">
+    <Card className="col-span-1 glass-card">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2">
+        <CardTitle className="text-base font-semibold tracking-tight flex items-center gap-2 text-foreground">
           <Activity className="h-4 w-4 text-primary" />
           Clinical Conditions Share
         </CardTitle>
-        <CardDescription className="text-xs">
+        <CardDescription className="text-xs text-muted-foreground">
           Proportion of patient admissions by diagnostic condition
         </CardDescription>
       </CardHeader>
@@ -52,11 +52,11 @@ export function ConditionsDonutChart({ data = [], isLoading = false }: Condition
                       if (active && payload && payload.length) {
                         const item = payload[0].payload as ConditionStat;
                         return (
-                          <div className="rounded-lg border bg-popover p-2.5 shadow-md text-xs">
-                            <p className="font-semibold text-popover-foreground">{item.condition}</p>
-                            <p className="text-muted-foreground mt-0.5">
+                          <div className="rounded-xl border border-border/80 bg-popover/95 backdrop-blur-md p-3 shadow-xl text-xs">
+                            <p className="font-semibold text-foreground">{item.condition}</p>
+                            <p className="text-muted-foreground mt-1">
                               Patients: <strong className="text-foreground">{item.count}</strong> (
-                              {item.percentage}%)
+                              <span className="text-primary font-bold">{item.percentage}%</span>)
                             </p>
                           </div>
                         );
@@ -70,13 +70,14 @@ export function ConditionsDonutChart({ data = [], isLoading = false }: Condition
                     nameKey="condition"
                     innerRadius={55}
                     outerRadius={80}
-                    paddingAngle={3}
+                    paddingAngle={4}
                   >
                     {data.map((_, index) => (
                       <Cell
                         key={`cell-${index}`}
                         fill={PALETTE[index % PALETTE.length]}
-                        stroke="none"
+                        stroke="rgba(255,255,255,0.08)"
+                        strokeWidth={1}
                       />
                     ))}
                   </Pie>
@@ -84,15 +85,15 @@ export function ConditionsDonutChart({ data = [], isLoading = false }: Condition
               </ResponsiveContainer>
             </div>
 
-            <div className="w-full sm:w-1/2 space-y-1.5 pr-2">
+            <div className="w-full sm:w-1/2 space-y-2 pr-2">
               {data.map((item, index) => (
-                <div key={item.condition} className="flex items-center justify-between text-xs">
+                <div key={item.condition} className="flex items-center justify-between text-xs p-1 rounded-md hover:bg-muted/40 transition-colors">
                   <div className="flex items-center gap-2 truncate">
                     <span
-                      className="h-2.5 w-2.5 rounded-full shrink-0"
+                      className="h-2.5 w-2.5 rounded-full shrink-0 shadow-xs"
                       style={{ backgroundColor: PALETTE[index % PALETTE.length] }}
                     />
-                    <span className="truncate text-muted-foreground">{item.condition}</span>
+                    <span className="truncate text-muted-foreground font-medium">{item.condition}</span>
                   </div>
                   <span className="font-semibold text-foreground shrink-0 ml-2">
                     {item.percentage}%

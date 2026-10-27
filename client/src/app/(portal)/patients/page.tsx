@@ -113,12 +113,12 @@ export default function PatientsPage() {
       </div>
 
       {/* Toolbar & Filters */}
-      <div className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm">
+      <div className="glass-panel p-4 shadow-lg space-y-3">
         <SearchInput
           value={search}
           onChange={(val) => updateUrlParams({ search: val, page: 1 })}
           placeholder="Search by patient name, phone, or email..."
-          className="w-full md:max-w-md"
+          className="w-full md:max-w-md bg-card/60 dark:bg-card/40 border-border/70"
         />
 
         <PatientFilters

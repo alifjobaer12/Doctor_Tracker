@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { Eye, Pencil, Trash2, Mail, Phone, Users, Building2 } from "lucide-react";
 import { Doctor } from "@/types/doctor";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -27,24 +26,27 @@ export function DoctorCard({ doctor, onEdit, onDelete }: DoctorCardProps) {
   };
 
   return (
-    <Card className="hover:shadow-md transition-shadow flex flex-col justify-between">
-      <CardHeader className="pb-3">
+    <div className="glass-card hover:border-primary/40 transition-all duration-200 flex flex-col justify-between group overflow-hidden">
+      <div className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <Avatar className="h-10 w-10 bg-primary/10 text-primary border border-primary/20">
-              <AvatarFallback className="text-xs font-semibold">
+            <Avatar className="h-11 w-11 bg-primary/10 text-primary border border-primary/25 shadow-sm">
+              <AvatarFallback className="text-xs font-bold text-primary">
                 {getInitials(doctor.name)}
               </AvatarFallback>
             </Avatar>
             <div>
               <Link
                 href={`/doctors/${doctor._id}`}
-                className="font-semibold text-sm hover:underline text-foreground tracking-tight"
+                className="font-semibold text-sm hover:text-primary transition-colors text-foreground tracking-tight line-clamp-1"
               >
                 {doctor.name}
               </Link>
-              <div className="mt-0.5">
-                <Badge variant="secondary" className="text-[11px] font-normal py-0">
+              <div className="mt-1">
+                <Badge
+                  variant="secondary"
+                  className="text-[11px] font-medium py-0 bg-secondary/80 text-secondary-foreground border border-border/50"
+                >
                   {doctor.specialization}
                 </Badge>
               </div>
@@ -53,34 +55,34 @@ export function DoctorCard({ doctor, onEdit, onDelete }: DoctorCardProps) {
 
           <Link href={`/doctors/${doctor._id}`}>
             <Badge
-              variant={doctor.patientsCount > 0 ? "outline" : "secondary"}
-              className="gap-1 text-xs px-2 py-0.5"
+              variant="outline"
+              className="gap-1 text-xs px-2.5 py-0.5 bg-card/60 border-border/70 hover:border-primary/50 text-foreground transition-colors"
             >
               <Users className="h-3 w-3 text-primary" />
-              <span>{doctor.patientsCount}</span>
+              <span className="font-semibold">{doctor.patientsCount}</span>
             </Badge>
           </Link>
         </div>
-      </CardHeader>
+      </div>
 
-      <CardContent className="space-y-2 text-xs text-muted-foreground pb-3">
+      <div className="px-5 py-2 space-y-2 text-xs text-muted-foreground">
         <div className="flex items-center gap-2">
-          <Building2 className="h-3.5 w-3.5 shrink-0 text-muted-foreground/70" />
-          <span className="truncate">{doctor.hospital}</span>
+          <Building2 className="h-3.5 w-3.5 shrink-0 text-muted-foreground/80" />
+          <span className="truncate text-foreground/85 font-medium">{doctor.hospital}</span>
         </div>
         <div className="flex items-center gap-2">
-          <Phone className="h-3.5 w-3.5 shrink-0 text-muted-foreground/70" />
-          <span>{doctor.phone}</span>
+          <Phone className="h-3.5 w-3.5 shrink-0 text-muted-foreground/80" />
+          <span className="text-foreground/85">{doctor.phone}</span>
         </div>
         <div className="flex items-center gap-2">
-          <Mail className="h-3.5 w-3.5 shrink-0 text-muted-foreground/70" />
-          <span className="truncate">{doctor.email}</span>
+          <Mail className="h-3.5 w-3.5 shrink-0 text-muted-foreground/80" />
+          <span className="truncate text-foreground/85">{doctor.email}</span>
         </div>
-      </CardContent>
+      </div>
 
-      <CardFooter className="pt-2 border-t flex items-center justify-between">
+      <div className="mt-3 px-5 py-3 border-t border-border/50 bg-card/30 flex items-center justify-between">
         <Link href={`/doctors/${doctor._id}`}>
-          <Button variant="ghost" size="sm" className="h-8 text-xs gap-1">
+          <Button variant="ghost" size="sm" className="h-8 text-xs gap-1.5 hover:bg-primary/10 hover:text-primary">
             <Eye className="h-3.5 w-3.5" />
             View Detail
           </Button>
@@ -90,7 +92,7 @@ export function DoctorCard({ doctor, onEdit, onDelete }: DoctorCardProps) {
             variant="ghost"
             size="icon"
             onClick={() => onEdit(doctor)}
-            className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-card/60"
           >
             <Pencil className="h-3.5 w-3.5" />
             <span className="sr-only">Edit</span>
@@ -99,13 +101,13 @@ export function DoctorCard({ doctor, onEdit, onDelete }: DoctorCardProps) {
             variant="ghost"
             size="icon"
             onClick={() => onDelete(doctor)}
-            className="h-8 w-8 text-muted-foreground hover:text-destructive"
+            className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
           >
             <Trash2 className="h-3.5 w-3.5" />
             <span className="sr-only">Delete</span>
           </Button>
         </div>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }

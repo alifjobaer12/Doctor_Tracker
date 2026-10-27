@@ -216,47 +216,47 @@ erDiagram
 ## 5. Visual Evidence
 
 ### 1. Clinical Analytics Dashboard
-> Executive analytics featuring real-time KPI metrics, patient admission timeline, top physicians by patient load, conditions donut share, and department distribution.
+> Executive analytics featuring real-time KPI metrics, patient admission timeline, top physicians by patient load, conditions donut share, and department distribution. Overhauled with ambient multi-orb mesh gradients, frosted glass panels (`backdrop-blur-xl`), and crisp high-contrast dark mode visualizations.
 
-| Desktop View (1280px) | Mobile View (390px) |
-|---|---|
-| ![Desktop Dashboard](docs/screenshots/desktop-dashboard.png) | ![Mobile Dashboard](docs/screenshots/mobile-dashboard.png) |
+| Desktop Dark Mode (1280px) | Desktop Light Mode (1280px) | Mobile View (390px) |
+|---|---|---|
+| ![Desktop Dashboard Dark](docs/screenshots/desktop-dashboard-dark.png) | ![Desktop Dashboard](docs/screenshots/desktop-dashboard.png) | ![Mobile Dashboard](docs/screenshots/mobile-dashboard.png) |
 
 ---
 
 ### 2. Doctors Directory
-> Physician directory with debounced search, specialization/hospital filters, sorting, table/grid view toggle, and pagination.
+> Physician directory with debounced search, specialization/hospital filters, sorting, table/grid view toggle, and pagination with glassmorphic cards and high-contrast badges.
 
-| Desktop View (1280px) | Mobile View (390px) |
-|---|---|
-| ![Desktop Doctors](docs/screenshots/desktop-doctors.png) | ![Mobile Doctors](docs/screenshots/mobile-doctors.png) |
+| Desktop Dark Mode (1280px) | Desktop Light Mode (1280px) | Mobile View (390px) |
+|---|---|---|
+| ![Desktop Doctors Dark](docs/screenshots/desktop-doctors-dark.png) | ![Desktop Doctors](docs/screenshots/desktop-doctors.png) | ![Mobile Doctors](docs/screenshots/mobile-doctors.png) |
 
 ---
 
 ### 3. Doctor Clinical Profile & Assigned Patients
 > Physician detail profile displaying clinical information, active patient workload badge, and doctor-scoped patient management with cascade delete confirmation.
 
-| Desktop View (1280px) | Mobile View (390px) |
-|---|---|
-| ![Desktop Doctor Detail](docs/screenshots/desktop-doctor-detail.png) | ![Mobile Doctor Detail](docs/screenshots/mobile-doctor-detail.png) |
+| Desktop Dark Mode (1280px) | Desktop Light Mode (1280px) | Mobile View (390px) |
+|---|---|---|
+| ![Desktop Doctor Detail Dark](docs/screenshots/desktop-doctor-detail-dark.png) | ![Desktop Doctor Detail](docs/screenshots/desktop-doctor-detail.png) | ![Mobile Doctor Detail](docs/screenshots/mobile-doctor-detail.png) |
 
 ---
 
 ### 4. Patients Registry
-> Centralized patient care directory with demographic filtering, condition badges, admission date formatting, and assigned doctor links.
+> Centralized patient care directory with demographic filtering, high-contrast condition status badges, admission date formatting, and assigned doctor links.
 
-| Desktop View (1280px) | Mobile View (390px) |
-|---|---|
-| ![Desktop Patients](docs/screenshots/desktop-patients.png) | ![Mobile Patients](docs/screenshots/mobile-patients.png) |
+| Desktop Dark Mode (1280px) | Desktop Light Mode (1280px) | Mobile View (390px) |
+|---|---|---|
+| ![Desktop Patients Dark](docs/screenshots/desktop-patients-dark.png) | ![Desktop Patients](docs/screenshots/desktop-patients.png) | ![Mobile Patients](docs/screenshots/mobile-patients.png) |
 
 ---
 
 ### 5. Authentication Screen
-> Secure login portal with input validation, password toggle, rate-limiting protection, and 1-click demo credential quick-fill.
+> Secure login portal with ambient glowing mesh, frosted glass panel, input validation, password toggle, rate-limiting protection, and 1-click demo credential quick-fill.
 
-| Desktop View (1280px) | Mobile View (390px) |
-|---|---|
-| ![Desktop Login](docs/screenshots/desktop-login.png) | ![Mobile Login](docs/screenshots/mobile-login.png) |
+| Desktop Dark Mode (1280px) | Desktop Light Mode (1280px) | Mobile View (390px) |
+|---|---|---|
+| ![Desktop Login Dark](docs/screenshots/desktop-login-dark.png) | ![Desktop Login](docs/screenshots/desktop-login.png) | ![Mobile Login](docs/screenshots/mobile-login.png) |
 
 ---
 
@@ -299,6 +299,7 @@ All API endpoints reside under `/api/v1` and return the unified response envelop
 2. **Referential Integrity Enforcement**: Doctors cannot be deleted if they have active patients assigned to them (returning HTTP 409 Conflict). A `?cascade=true` query parameter and interactive modal checkbox allow administrators to deliberately delete associated patient records when necessary.
 3. **Analytics Zero-Filling**: The `/analytics/timeline` endpoint explicitly generates zero-filled buckets for days/months with zero admissions, guaranteeing that visual charts maintain a continuous, accurate time axis.
 4. **Denormalized Counter Reconciliation**: Doctor `patientsCount` is maintained atomically on every mutation. A recount utility is included to verify data consistency.
+5. **Modern Glassmorphism & Calibrated Dark Mode**: Engineered with ambient multi-orb mesh gradients (`blur-[120px]`), frosted glass panels (`backdrop-blur-xl bg-card/65 border-border/60`), and luminous OKLCH sapphire tokens (`oklch(0.68 0.20 255)`). Fixed SVG axis rendering in dark mode by eliminating invalid `hsl(oklch(...))` color wrappers on Recharts axes and grids, guaranteeing crisp high-contrast data visualization, accessible badges, and readable typography across all device viewports.
 
 ---
 

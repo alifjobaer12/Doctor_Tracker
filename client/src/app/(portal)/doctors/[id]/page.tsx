@@ -20,7 +20,6 @@ import { useDoctor } from "@/hooks/useDoctors";
 import { useDoctorPatients, usePatientFilters, useDeleteDoctorPatient } from "@/hooks/usePatients";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SearchInput } from "@/components/shared/SearchInput";
 import { Pagination } from "@/components/shared/Pagination";
@@ -165,62 +164,60 @@ export default function DoctorDetailPage() {
       </div>
 
       {/* Doctor Clinical Profile Card */}
-      <Card className="border bg-card shadow-sm">
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary border border-primary/20 text-lg font-bold">
-                {doctor.name
-                  .replace(/^Dr\.\s*/i, "")
-                  .split(" ")
-                  .map((n) => n[0])
-                  .slice(0, 2)
-                  .join("")}
-              </div>
-              <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                    {doctor.name}
-                  </h1>
-                  <Badge variant="secondary" className="text-xs">
-                    {doctor.specialization}
-                  </Badge>
-                </div>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground pt-1">
-                  <span className="flex items-center gap-1">
-                    <Building2 className="h-3.5 w-3.5 text-muted-foreground/70" />
-                    {doctor.hospital}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Phone className="h-3.5 w-3.5 text-muted-foreground/70" />
-                    {doctor.phone}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Mail className="h-3.5 w-3.5 text-muted-foreground/70" />
-                    {doctor.email}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5 text-muted-foreground/70" />
-                    Registered {format(new Date(doctor.createdAt), "MMM yyyy")}
-                  </span>
-                </div>
-              </div>
+      <div className="glass-panel p-6 sm:p-8 shadow-xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex items-start gap-4 sm:gap-5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary/20 to-primary/10 text-primary border border-primary/25 shadow-sm text-xl font-bold">
+              {doctor.name
+                .replace(/^Dr\.\s*/i, "")
+                .split(" ")
+                .map((n) => n[0])
+                .slice(0, 2)
+                .join("")}
             </div>
-
-            <div className="flex items-center gap-3 border-t md:border-t-0 md:border-l pt-4 md:pt-0 md:pl-6">
-              <div className="flex flex-col items-center justify-center rounded-xl bg-muted/50 border px-6 py-3 min-w-[120px]">
-                <div className="flex items-center gap-1.5 text-primary">
-                  <Users className="h-4 w-4" />
-                  <span className="text-2xl font-bold">{doctor.patientsCount}</span>
-                </div>
-                <span className="text-[11px] text-muted-foreground font-medium">
-                  Active Patients
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                  {doctor.name}
+                </h1>
+                <Badge variant="secondary" className="text-xs bg-secondary/80 text-secondary-foreground border border-border/50">
+                  {doctor.specialization}
+                </Badge>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-muted-foreground pt-1">
+                <span className="flex items-center gap-1.5 font-medium text-foreground/80">
+                  <Building2 className="h-3.5 w-3.5 text-primary" />
+                  {doctor.hospital}
+                </span>
+                <span className="flex items-center gap-1.5 font-medium text-foreground/80">
+                  <Phone className="h-3.5 w-3.5 text-primary" />
+                  {doctor.phone}
+                </span>
+                <span className="flex items-center gap-1.5 font-medium text-foreground/80">
+                  <Mail className="h-3.5 w-3.5 text-primary" />
+                  {doctor.email}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                  Registered {format(new Date(doctor.createdAt), "MMM yyyy")}
                 </span>
               </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
+
+          <div className="flex items-center gap-3 border-t md:border-t-0 md:border-l border-border/60 pt-4 md:pt-0 md:pl-6">
+            <div className="flex flex-col items-center justify-center rounded-xl bg-card/60 backdrop-blur-md border border-border/60 px-6 py-3 min-w-[120px] shadow-sm">
+              <div className="flex items-center gap-1.5 text-primary">
+                <Users className="h-4 w-4" />
+                <span className="text-2xl font-bold">{doctor.patientsCount}</span>
+              </div>
+              <span className="text-[11px] text-muted-foreground font-medium">
+                Active Patients
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Doctor's Patients Section */}
       <div className="space-y-4">
@@ -245,12 +242,12 @@ export default function DoctorDetailPage() {
         </div>
 
         {/* Toolbar & Filters */}
-        <div className="flex flex-col gap-3 rounded-lg border bg-card p-4 shadow-sm">
+        <div className="glass-panel p-4 shadow-lg space-y-3">
           <SearchInput
             value={search}
             onChange={(val) => updateUrlParams({ search: val, page: 1 })}
             placeholder="Search patients by name, phone, or email..."
-            className="w-full md:max-w-md"
+            className="w-full md:max-w-md bg-card/60 dark:bg-card/40 border-border/70"
           />
 
           <PatientFilters
