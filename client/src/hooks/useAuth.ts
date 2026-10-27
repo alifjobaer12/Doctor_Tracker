@@ -30,8 +30,7 @@ export function useLogin() {
       
       const searchParams = new URLSearchParams(window.location.search);
       const next = searchParams.get("next") || "/dashboard";
-      router.push(next);
-      router.refresh();
+      router.replace(next);
     },
     onError: (error) => {
       const message = error.response?.data?.message || "Invalid credentials. Please try again.";
@@ -49,12 +48,11 @@ export function useLogout() {
     onSuccess: () => {
       queryClient.clear();
       toast.info("Logged out successfully");
-      router.push("/login");
-      router.refresh();
+      router.replace("/login");
     },
     onError: () => {
       queryClient.clear();
-      router.push("/login");
+      router.replace("/login");
     },
   });
 }

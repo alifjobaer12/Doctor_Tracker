@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import dynamic from "next/dynamic";
 import { RefreshCw } from "lucide-react";
 import {
   useSummaryStats,
@@ -11,29 +10,11 @@ import {
   useSpecializationsAnalytics,
 } from "@/hooks/useAnalytics";
 import { StatCards } from "@/components/dashboard/StatCards";
+import { TimelineChart } from "@/components/dashboard/TimelineChart";
+import { PatientsPerDoctorChart } from "@/components/dashboard/PatientsPerDoctorChart";
+import { ConditionsDonutChart } from "@/components/dashboard/ConditionsDonutChart";
+import { SpecializationsBarChart } from "@/components/dashboard/SpecializationsBarChart";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-
-// Dynamic imports for chart components per performance guidelines in docs/08 & docs/09
-const TimelineChart = dynamic(
-  () => import("@/components/dashboard/TimelineChart").then((mod) => mod.TimelineChart),
-  { ssr: false, loading: () => <Skeleton className="h-[340px] w-full rounded-lg" /> }
-);
-
-const PatientsPerDoctorChart = dynamic(
-  () => import("@/components/dashboard/PatientsPerDoctorChart").then((mod) => mod.PatientsPerDoctorChart),
-  { ssr: false, loading: () => <Skeleton className="h-[340px] w-full rounded-lg" /> }
-);
-
-const ConditionsDonutChart = dynamic(
-  () => import("@/components/dashboard/ConditionsDonutChart").then((mod) => mod.ConditionsDonutChart),
-  { ssr: false, loading: () => <Skeleton className="h-[340px] w-full rounded-lg" /> }
-);
-
-const SpecializationsBarChart = dynamic(
-  () => import("@/components/dashboard/SpecializationsBarChart").then((mod) => mod.SpecializationsBarChart),
-  { ssr: false, loading: () => <Skeleton className="h-[340px] w-full rounded-lg" /> }
-);
 
 export default function DashboardPage() {
   const [timelineRange, setTimelineRange] = React.useState<"7d" | "30d" | "90d" | "12m">("30d");

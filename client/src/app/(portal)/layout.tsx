@@ -4,38 +4,10 @@ import * as React from "react";
 import { useCurrentUser } from "@/hooks/useAuth";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
-import { Skeleton } from "@/components/ui/skeleton";
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
-  const { data: user, isLoading, isError } = useCurrentUser();
+  const { data: user } = useCurrentUser();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-
-  if (isLoading) {
-    return (
-      <div className="flex h-screen w-full overflow-hidden bg-background">
-        <aside className="hidden md:flex w-64 flex-col border-r bg-card p-6 space-y-4">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-8 w-full" />
-          <Skeleton className="h-8 w-full" />
-          <Skeleton className="h-8 w-full" />
-        </aside>
-        <div className="flex-1 flex flex-col">
-          <header className="h-16 border-b flex items-center justify-between px-6">
-            <Skeleton className="h-8 w-40" />
-            <Skeleton className="h-8 w-24" />
-          </header>
-          <main className="p-6 space-y-4">
-            <Skeleton className="h-12 w-1/3" />
-            <Skeleton className="h-64 w-full" />
-          </main>
-        </div>
-      </div>
-    );
-  }
-
-  if (isError || !user) {
-    return null; // Route middleware will redirect to /login
-  }
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">

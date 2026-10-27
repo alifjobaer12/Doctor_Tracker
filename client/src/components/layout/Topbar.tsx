@@ -7,6 +7,7 @@ import { User } from "@/types/auth";
 import { useLogout } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ThemeToggle } from "./ThemeToggle";
 
 interface TopbarProps {
@@ -33,7 +34,7 @@ export function Topbar({ user, onOpenMobileMenu }: TopbarProps) {
       </div>
 
       <div className="flex items-center gap-3">
-        {user && (
+        {user ? (
           <div className="flex items-center gap-2 mr-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 text-primary border border-primary/25 shadow-xs">
               <UserIcon className="h-4 w-4" />
@@ -46,6 +47,14 @@ export function Topbar({ user, onOpenMobileMenu }: TopbarProps) {
               <Shield className="h-2.5 w-2.5 mr-1 text-primary" />
               {user.role}
             </Badge>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 mr-2">
+            <Skeleton className="h-8 w-8 rounded-full" />
+            <div className="hidden sm:flex flex-col gap-1">
+              <Skeleton className="h-3 w-20" />
+              <Skeleton className="h-2 w-28" />
+            </div>
           </div>
         )}
 
