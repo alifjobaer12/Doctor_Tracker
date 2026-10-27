@@ -6,13 +6,13 @@ import { Plus, LayoutGrid, List, Stethoscope } from "lucide-react";
 import { Doctor, DoctorQueryParams } from "@/types/doctor";
 import { useDoctors, useDoctorFilters } from "@/hooks/useDoctors";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SearchInput } from "@/components/shared/SearchInput";
 import { Pagination } from "@/components/shared/Pagination";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { DoctorFilters } from "@/components/doctors/DoctorFilters";
 import { DoctorsTable } from "@/components/doctors/DoctorsTable";
 import { DoctorCard } from "@/components/doctors/DoctorCard";
+import { DoctorsSkeleton } from "@/components/doctors/DoctorsSkeleton";
 import { DoctorFormDialog } from "@/components/doctors/DoctorFormDialog";
 import { DeleteDoctorDialog } from "@/components/doctors/DeleteDoctorDialog";
 
@@ -141,13 +141,7 @@ export default function DoctorsPage() {
 
       {/* Content Area */}
       {isLoading ? (
-        <div className="space-y-3">
-          <Skeleton className="h-12 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-        </div>
+        <DoctorsSkeleton viewMode={viewMode} />
       ) : doctors.length === 0 ? (
         <EmptyState
           icon={Stethoscope}

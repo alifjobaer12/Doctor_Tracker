@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { LogOut, Menu, User as UserIcon, Shield } from "lucide-react";
+import { useIsFetching } from "@tanstack/react-query";
 import { User } from "@/types/auth";
 import { useLogout } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ interface TopbarProps {
 
 export function Topbar({ user, onOpenMobileMenu }: TopbarProps) {
   const { mutate: logout, isPending } = useLogout();
+  const isFetching = useIsFetching();
 
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-border/60 bg-card/65 dark:bg-card/45 px-4 md:px-6 backdrop-blur-xl shadow-xs">
@@ -60,6 +62,17 @@ export function Topbar({ user, onOpenMobileMenu }: TopbarProps) {
           <span className="hidden sm:inline">Logout</span>
         </Button>
       </div>
+
+      {/* Global query background fetching animation indicator */}
+      {isFetching > 0 && (
+        <div
+          role="progressbar"
+          aria-label="Loading data"
+          className="absolute bottom-0 left-0 right-0 h-[2.5px] overflow-hidden bg-primary/15"
+        >
+          <div className="h-full w-2/5 bg-primary animate-[shimmer_1.2s_infinite] shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+        </div>
+      )}
     </header>
   );
 }

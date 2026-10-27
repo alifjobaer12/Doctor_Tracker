@@ -26,6 +26,7 @@ import { Pagination } from "@/components/shared/Pagination";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ConfirmDialog } from "@/components/shared/ConfirmDialog";
 import { PatientsTable } from "@/components/patients/PatientsTable";
+import { PatientsSkeleton } from "@/components/patients/PatientsSkeleton";
 import { PatientFormDialog } from "@/components/patients/PatientFormDialog";
 import { PatientFilters } from "@/components/patients/PatientFilters";
 import { DoctorFormDialog } from "@/components/doctors/DoctorFormDialog";
@@ -109,9 +110,9 @@ export default function DoctorDetailPage() {
   if (isDoctorLoading) {
     return (
       <div className="space-y-6">
-        <Skeleton className="h-8 w-40" />
-        <Skeleton className="h-44 w-full" />
-        <Skeleton className="h-64 w-full" />
+        <Skeleton className="h-6 w-40" />
+        <Skeleton className="h-44 w-full rounded-2xl" />
+        <PatientsSkeleton />
       </div>
     );
   }
@@ -261,11 +262,7 @@ export default function DoctorDetailPage() {
 
         {/* Table Content */}
         {isPatientsLoading ? (
-          <div className="space-y-3">
-            <Skeleton className="h-12 w-full" />
-            <Skeleton className="h-14 w-full" />
-            <Skeleton className="h-14 w-full" />
-          </div>
+          <PatientsSkeleton />
         ) : patients.length === 0 ? (
           <EmptyState
             icon={Users}

@@ -7,12 +7,12 @@ import { Patient, PatientQueryParams } from "@/types/patient";
 import { usePatients, usePatientFilters, useDeletePatient } from "@/hooks/usePatients";
 import { useDoctors } from "@/hooks/useDoctors";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SearchInput } from "@/components/shared/SearchInput";
 import { Pagination } from "@/components/shared/Pagination";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ConfirmDialog } from "@/components/shared/ConfirmDialog";
 import { PatientsTable } from "@/components/patients/PatientsTable";
+import { PatientsSkeleton } from "@/components/patients/PatientsSkeleton";
 import { PatientFilters } from "@/components/patients/PatientFilters";
 import { PatientFormDialog } from "@/components/patients/PatientFormDialog";
 
@@ -132,13 +132,7 @@ export default function PatientsPage() {
 
       {/* Content Area */}
       {isLoading ? (
-        <div className="space-y-3">
-          <Skeleton className="h-12 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-          <Skeleton className="h-14 w-full" />
-        </div>
+        <PatientsSkeleton />
       ) : patients.length === 0 ? (
         <EmptyState
           icon={Users}
