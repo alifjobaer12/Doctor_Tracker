@@ -18,8 +18,8 @@ Commit after each phase. Run `npm run lint && npm run build` (and tests) before 
 - [x] Client: axios instance, login page, middleware.ts, portal layout guard, logout.
 
 ## Phase 3 — Doctors (API + UI)
-- [ ] Doctors CRUD, filters endpoint, list with search/filter/sort/pagination.
-- [ ] Doctors page (toolbar, table/cards, pagination, add/edit/delete dialogs).
+- [x] Doctors CRUD, filters endpoint, list with search/filter/sort/pagination.
+- [x] Doctors page (toolbar, table/cards, pagination, add/edit/delete dialogs).
 
 ## Phase 4 — Patients (API + UI)
 - [ ] Patients CRUD, filters endpoint, list query builder, counter maintenance.
